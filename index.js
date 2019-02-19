@@ -38,6 +38,9 @@ client.on("message", (message)=>{
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
+    if (command === "tes"){
+        client.guilds.get("").mes
+    }
     if (command === "del"){
         if (!message.channel.memberPermissions(message.member).has("MANAGE_MESSAGES")) return message.channel.send("don't have permission");
         //if (message.author.id != "308921859179544577" && message.author.id != "429323228117467136") return;
@@ -74,17 +77,22 @@ client.on("message", (message)=>{
     }
     if (command == "news"){
         
-        let check = (id) => id.map(i=>message.member.roles.has(i)).every(e=>e === false);
-        if (check(["544905847994712064","544905004197216275","544894702625751040"])) return;
+        let checkRole = (id) => id.map(i=>message.member.roles.has(i)).every(e=>e === false);
+        if (checkRole(["544905847994712064","544905004197216275","544894702625751040","544905166726496276"])) return;
         let mes = message.content.slice(prefix.length+command.length);
-        if (mes == "") return;
+        let attachment = message.attachments.first();
+        if (mes == "" && !attachment) return;
+        message.delete();
         message.channel.send({embed:{
             description: message.content.slice(prefix.length+command.length),
             footer: {
-                icon_url: message.author.avatarURL,
-                text: `by ${message.author.tag}`
+                //icon_url: message.author.avatarURL,
+                text: `${message.author.tag}`
             },
             timestamp: new Date(),
+            image: {
+                url: attachment ? message.attachments.first().url : ""
+              },
             color: 43775
         }})
     }
