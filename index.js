@@ -25,7 +25,7 @@ var c = 0x0;
 function color(rol){
     if (c > (0xffffff-0xfff)) c = 0x0;
     rol.setColor(c);
-    c += 0x005FC;
+    c += 0x007FC;
     setTimeout(color, 2000, rol);
 }
 
