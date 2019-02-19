@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const embed = new Discord.RichEmbed();
 
-const token = process.env.TOKEN;
+const token = process.env.TOKEdN;
 const prefix = "!";
 const isOwner = (message) => message.author.id === "308921859179544577";
 
