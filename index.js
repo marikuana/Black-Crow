@@ -158,7 +158,7 @@ client.on("message", (message)=>{
 client.on('guildMemberAdd',(guildmember)=>{
     //let r = guildmember.guild.roles.find('name','Muted');
     let rand = Math.floor(Math.random() * 5);
-    switch (a) {
+    switch (rand) {
   case 0:
         guildmember.guild.channels.get("548590343168458753").send(`${guildmember.user} теперь здесь.`);
     break;
