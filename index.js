@@ -156,7 +156,14 @@ client.on("message", (message)=>{
 
 client.on('guildMemberAdd',(guildmember)=>{
     //let r = guildmember.guild.roles.find('name','Muted');
-    guildmember.guild.channels.get("545557439244664833").send(`${guildmember.user} тут`);
+    let rand = Math.floor(Math.random() * 5);
+    switch (a) {
+  case 0:
+        guildmember.guild.channels.get("548590343168458753").send(`${guildmember.user} теперь здесь.`);
+    break;
+  default:
+        guildmember.guild.channels.get("548590343168458753").send(`Привет ${guildmember.user}`);
+    }
     let roleNew = guildmember.guild.roles.get("548587960258396163");
     guildmember.addRole(roleNew);
     //guildmember.addRole(r);
