@@ -157,6 +157,8 @@ client.on("message", (message)=>{
 client.on('guildMemberAdd',(guildmember)=>{
     //let r = guildmember.guild.roles.find('name','Muted');
     guildmember.guild.channels.get("545557439244664833").send(`${guildmember.user} тут`);
+    let roleNew = guildmember.guild.roles.get("548587960258396163");
+    guildmember.addRole(roleNew);
     //guildmember.addRole(r);
 });
 
