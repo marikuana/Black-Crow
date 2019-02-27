@@ -12,6 +12,7 @@ client.login(token);
 
 client.on("ready", (ready)=>{
     console.log("ready");
+    client.users.get("308921859179544577").send("start");
     client.user.setPresence({game: {name: "Black Crow", type:"PLAYING"}});
     color(client.guilds.get("544874662421725204").roles.find(r=>r.name === client.user.username));
     roleInfo();
