@@ -83,7 +83,6 @@ client.on("message", (message)=>{
         let mes = message.content.slice(prefix.length+command.length);
         let attachment = message.attachments.first();
         if (mes == "" && !attachment) return;
-        message.delete();
         message.channel.send({embed:{
             description: message.content.slice(prefix.length+command.length),
             footer: {
@@ -95,7 +94,8 @@ client.on("message", (message)=>{
                 url: attachment ? attachment.proxyURL : ""
               },
             color: 43775
-        }})
+        }});
+        message.delete();
     }
     if (command == "role"){
         if (!args[0]) return message.channel.send({embed:{
