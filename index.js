@@ -30,7 +30,7 @@ function color(rol){
     setTimeout(color, 2000, rol);
 }
 
-client.on("message", async (message)=>{
+client.on("message", (message)=>{
     if (!message.guild) return;
     if (message.author.bot || !message.content.startsWith(prefix)) return;
 
@@ -91,7 +91,7 @@ client.on("message", async (message)=>{
             },
             timestamp: new Date(),
             image: {
-                url: attachment ? attachment.proxyURL : ""
+                url: attachment ? attachment.url : ""
               },
             color: 43775
         }}).then(()=>{
