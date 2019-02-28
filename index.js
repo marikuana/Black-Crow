@@ -30,7 +30,7 @@ function color(rol){
     setTimeout(color, 2000, rol);
 }
 
-client.on("message", (message)=>{
+client.on("message", async (message)=>{
     if (!message.guild) return;
     if (message.author.bot || !message.content.startsWith(prefix)) return;
 
