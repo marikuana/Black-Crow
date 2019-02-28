@@ -92,7 +92,7 @@ client.on("message", (message)=>{
             },
             timestamp: new Date(),
             image: {
-                url: attachment ? message.attachments.first().url : ""
+                url: attachment ? attachment.proxyURL : ""
               },
             color: 43775
         }})
