@@ -161,16 +161,15 @@ client.on("message", (message)=>{
 client.on('guildMemberAdd',(guildmember)=>{
     let roleNew = guildmember.guild.roles.get("548587960258396163");
     guildmember.addRole(roleNew);
-    //let r = guildmember.guild.roles.find('name','Muted');
-    //guildmember.addRole(r);
-    let rand = Math.floor(Math.random() * 5);
+
+    /*let rand = Math.floor(Math.random() * 5);
     switch (rand) {
   case 0:
         guildmember.guild.channels.get("548590343168458753").send(`${guildmember.user} теперь здесь.`);
     break;
   default:
         guildmember.guild.channels.get("548590343168458753").send(`Привет ${guildmember.user}`);
-    }   
+    }   */
 });
 
 client.on('error',(error)=>{});
