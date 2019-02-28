@@ -83,7 +83,7 @@ client.on("message", async (message)=>{
         let mes = message.content.slice(prefix.length+command.length);
         let attachment = message.attachments.first();
         if (mes == "" && !attachment) return;
-        await message.channel.send({embed:{
+        message.channel.send({embed:{
             description: message.content.slice(prefix.length+command.length),
             footer: {
                 //icon_url: message.author.avatarURL,
@@ -94,8 +94,9 @@ client.on("message", async (message)=>{
                 url: attachment ? attachment.proxyURL : ""
               },
             color: 43775
-        }});
-        message.delete();
+        }}).then(()=>{
+            message.delete();
+        });
     }
     if (command == "role"){
         if (!args[0]) return message.channel.send({embed:{
