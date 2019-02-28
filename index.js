@@ -83,7 +83,7 @@ client.on("message", async (message)=>{
         let mes = message.content.slice(prefix.length+command.length);
         let attachment = message.attachments.first();
         if (mes == "" && !attachment) return;
-        message.channel.send({embed:{
+        await message.channel.send({embed:{
             description: message.content.slice(prefix.length+command.length),
             footer: {
                 //icon_url: message.author.avatarURL,
