@@ -95,7 +95,9 @@ client.on("message", (message)=>{
               },
             color: 43775
         }}).then(()=>{
-            message.delete();
+            setTimeout(()=>{
+                message.delete();
+            }, 3000);
         });
     }
     if (command == "role"){
