@@ -159,6 +159,9 @@ client.on("message", (message)=>{
 
 
 client.on('guildMemberAdd',(guildmember)=>{
+    if (guildmember.guild.id !== "544874662421725204") return;
+    guildmember.send({embed:{color: 43775, description:"Если хочешь вступить в клуб [тыкай сюда](https://docs.google.com/forms/d/e/1FAIpQLSevmhIjeaDcWXYXLJvkzsyXe5DPo4nxDevbhI0qhFTeQmyp7A/viewform)"}});
+    
     let roleNew = guildmember.guild.roles.get("548587960258396163");
     guildmember.addRole(roleNew);
 
