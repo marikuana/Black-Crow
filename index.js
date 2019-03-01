@@ -4,8 +4,9 @@ const embed = new Discord.RichEmbed();
 
 const token = process.env.TOKEN;
 const prefix = "!";
-const isOwner = (message) => message.author.id === "308921859179544577";
-
+const guildID = "544874662421725204";
+const ownerID = "308921859179544577";
+const isOwner = (message) => message.author.id === ownerID;
 client.login(token);
 
 //////////////////////////////
@@ -173,6 +174,16 @@ client.on('guildMemberAdd',(guildmember)=>{
   default:
         guildmember.guild.channels.get("548590343168458753").send(`Привет ${guildmember.user}`);
     }   */
+});
+
+client.on('messageReactionAdd', (react, user) => {
+    var guildmember = client.guilds.get(guildID).members.get(user.id);
+    let checkRole = (id) => id.map(i=>guildmember.roles.has(i)).every(e=>e === true);
+    if (react.message.channel.id !== "550415394091958272") return;
+        if (checkRole(["544906123451432961", "548587960258396163"])){
+            react.remove(user);
+            client.users.get(ownerID).send(`Delete emoji in ${react.message.channel.name} ${guildmember.user.tag}`);
+        }   
 });
 
 client.on('error',(error)=>{});
