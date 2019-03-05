@@ -84,7 +84,7 @@ client.on("message", async (message)=>{
         textArr.forEach(function(line){
             line = line.trim();
             if (line.startsWith("me")){
-                ctx.fillStyle = "#b754d1";
+                ctx.fillStyle = "#ad3ecb";// //#b754d1
                 line = line.slice(2).trim();
             }
             else
