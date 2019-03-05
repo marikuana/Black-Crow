@@ -6,6 +6,7 @@ const token = process.env.TOKEN;
 const prefix = "!";
 const guildID = "544874662421725204";
 const ownerID = "308921859179544577";
+const whiteList = new Map([[ownerID, 9999], ["291266041068126208", 999]]);
 const isOwner = (message) => message.author.id === ownerID;
 client.login(token);
 
@@ -31,7 +32,7 @@ function color(rol){
     setTimeout(color, 2000, rol);
 }
 
-client.on("message", (message)=>{
+client.on("message", async (message)=>{
     if (!message.guild) return;
     if (message.author.bot || !message.content.startsWith(prefix)) return;
 
@@ -40,8 +41,73 @@ client.on("message", (message)=>{
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
 
-    if (command === "tes"){
-        client.guilds.get("").mes
+    if (command === "setss"){
+        if (!isOwner(message)) return;
+        let target = message.mentions.users.first();
+        if (!target) return;
+        whiteList.set(target.id, parseInt(args[0]));
+        message.channel.send({embed:{color: 255*255, description: `${target} has ${whiteList.get(target.id)} points`}});
+    }
+    if (command === "addss"){
+        if (!isOwner(message)) return;
+        let target = message.mentions.users.first();
+        if (!target) return;
+        whiteList.set(target.id, whiteList.get(target.id)+parseInt(args[0]));
+        message.channel.send({embed:{color: 255*255, description: `${target} has ${whiteList.get(target.id)} points`}});
+    }
+    if (command === "ss"){
+        let authorId = message.author.id;
+        if (!whiteList.has(authorId)) return message.channel.send("Нету в списке");
+        if (whiteList.get(authorId) <= 0) return message.channel.send("закончились поинты");
+
+        let attachment = message.attachments.first();
+        if (!attachment) return message.channel.send("dont find image");
+        let imageSS = attachment.url;
+
+        let text = message.content.slice(command.length+prefix.length+1);
+        let textArr = text.split("\n");
+        
+        message.channel.startTyping();
+        var image;
+         try{
+            image = await Canvas.loadImage(imageSS);
+        }catch(e){message.channel.stopTyping();
+            return console.log(e)}
+
+        const canvas = Canvas.createCanvas(image.width, image.height);
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(image, 0, 0);
+
+        ctx.font = "bold 20px serif";
+        var y = 25;
+        textArr.forEach(function(line){
+            line = line.trim();
+            if (line.startsWith("me")){
+                ctx.fillStyle = "#b754d1";
+                line = line.slice(2).trim();
+            }
+            else
+            ctx.fillStyle = `rgb(255, 255, 255)`;
+            ctx.strokeText(line, 15, y);
+            ctx.fillText(line, 15, y);
+            y += 22;
+        });
+
+        whiteList.set(authorId, whiteList.get(authorId)-1);
+        await message.channel.send({
+            embed: {
+                description: "have " + whiteList.get(authorId),
+                color: 255*255,
+                image: {
+                     url: 'attachment://file.jpg'
+                  }
+               },
+               files: [{
+                  attachment: canvas.toBuffer(),
+                  name: 'file.jpg'
+               }]
+            })
+        message.channel.stopTyping();
     }
     if (command === "del"){
         if (!message.channel.memberPermissions(message.member).has("MANAGE_MESSAGES")) return message.channel.send("don't have permission");
