@@ -1,11 +1,12 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const embed = new Discord.RichEmbed();
+const Canvas = require("canvas");
 
 const token = process.env.TOKEN;
 const prefix = "!";
-const guildID = "544874662421725204";
-const ownerID = "308921859179544577";
+const guildID = process.env.guildID;
+const ownerID = process.env.ownerID;
 const whiteList = new Map([[ownerID, 9999], ["291266041068126208", 999]]);
 const isOwner = (message) => message.author.id === ownerID;
 client.login(token);
