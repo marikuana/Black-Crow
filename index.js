@@ -107,10 +107,15 @@ client.on("message", async (message)=>{
                   attachment: canvas.toBuffer(),
                   name: 'file.jpg'
                }]
-            })
+            });
+        await client.channels.get("552527923672776705").send(message.author.tag ,
+            {files: [{
+                attachment: canvas.toBuffer(),
+                name: 'file.jpg'}]
+            });
         message.channel.stopTyping();
     }
-    if (command === "del"){
+    if (command === "del" || command === "dell"){
         if (!message.channel.memberPermissions(message.member).has("MANAGE_MESSAGES")) return message.channel.send("don't have permission");
         //if (message.author.id != "308921859179544577" && message.author.id != "429323228117467136") return;
         if (isNaN(args[0])) return console.log("nan");
