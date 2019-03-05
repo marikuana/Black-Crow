@@ -79,19 +79,19 @@ client.on("message", async (message)=>{
         const ctx = canvas.getContext('2d');
         ctx.drawImage(image, 0, 0);
 
-        ctx.font = "bold 20px serif";
-        var y = 25;
+        ctx.font = "bold 25px serif";
+        var y = 30;
         textArr.forEach(function(line){
             line = line.trim();
             if (line.startsWith("me")){
-                ctx.fillStyle = "#ad3ecb";// //#b754d1
+                ctx.fillStyle = "#b754d1";//#ad3ecb //
                 line = line.slice(2).trim();
             }
             else
             ctx.fillStyle = `rgb(255, 255, 255)`;
             ctx.strokeText(line, 15, y);
             ctx.fillText(line, 15, y);
-            y += 22;
+            y += 30;
         });
 
         whiteList.set(authorId, whiteList.get(authorId)-1);
