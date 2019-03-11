@@ -79,7 +79,7 @@ client.on("message", async (message)=>{
         const ctx = canvas.getContext('2d');
         ctx.drawImage(image, 0, 0);
 
-        ctx.font = "bold 25px serif";
+        ctx.font = "bold 25px arial";
         var y = 30;
         textArr.forEach(function(line){
             line = line.trim();
