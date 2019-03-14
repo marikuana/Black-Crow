@@ -152,7 +152,7 @@ client.on("message", async (message)=>{
     if (command == "news"){
         
         let checkRole = (id) => id.map(i=>message.member.roles.has(i)).every(e=>e === false);
-        if (checkRole(["544905847994712064","544905004197216275","544894702625751040","544905166726496276","544907129052463124"])) return;
+        if (checkRole(["544905847994712064","544905004197216275","544894702625751040","544905166726496276","544907129052463124","555797712751165482"])) return;
         let mes = message.content.slice(prefix.length+command.length);
         let attachment = message.attachments.first();
         if (mes == "" && !attachment) return;
